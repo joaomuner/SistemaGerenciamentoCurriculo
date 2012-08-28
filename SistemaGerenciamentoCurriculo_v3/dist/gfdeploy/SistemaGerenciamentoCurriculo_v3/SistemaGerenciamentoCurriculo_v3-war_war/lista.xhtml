@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Lista</title>
+    </h:head>
+    <h:body>
+        <h:outputLabel value="Quantidade de Registros: "/>
+        <h:outputText value="#{CandidatoBean.nomeCandidato()}"/>
+        <h:outputLabel value="Registros: "/>
+        <h:panelGroup>
+            <h:panelGrid>
+                <h:form>
+                    <h:dataTable value="#{CandidatoBean.listaCandidato()}" var="list">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{list.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Telefone"/>
+                            </f:facet>
+                            <h:outputText value="#{list.telefone}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </h:panelGrid>
+            <h:form>
+                <h:commandButton action="#{CandidatoBean.index()}" value="Index"/>
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+</html>
