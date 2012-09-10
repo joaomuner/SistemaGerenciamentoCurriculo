@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Formulário</title>
+    </h:head>
+    <h:body>
+        <h1>Registre-se</h1>
+        <f:view>
+            <h:form>
+                <h:outputLabel value="#{CandidatoBean.returnnome()}"/>
+                <br/>
+                <h3>Dados pessoais   --------------------------------------------------</h3>
+                <h:outputLabel value="Nome"/>
+                <h:inputText value="#{CandidatoBean.cadidato.nome}"/><br></br>
+                <h:outputLabel value="Telefone"/>
+                <h:inputText value="#{CandidatoBean.cadidato.telefone}"/><br></br>
+                <h:outputLabel value="Email"/>
+                <h:inputText value="#{CandidatoBean.cadidato.email}"/><br></br>
+                <h:outputLabel value="CPF"/>
+                <h:inputText value="#{CandidatoBean.cadidato.CPF}"/><br></br>
+                <h:outputLabel value="RG"/>
+                <h:inputText value="#{CandidatoBean.cadidato.RG}"/><br></br>
+                <h:outputLabel value="Data Nascimento"/>
+                <h:inputText value="#{CandidatoBean.cadidato.datanascimento}"/><br></br>
+                <h:outputLabel value="Endereço"/>
+                <h:inputText value="#{CandidatoBean.cadidato.endereco}"/><br></br>
+                <h:outputLabel value="Bairro"/>
+                <h:inputText value="#{CandidatoBean.cadidato.bairro}"/><br></br>
+                <h:outputLabel value="Cidade"/>
+                <h:inputText value="#{CandidatoBean.cadidato.cidade}"/><br></br>
+                <h:outputLabel value="CEP"/>
+                <h:inputText value="#{CandidatoBean.cadidato.CEP}"/><br></br>
+                <h:outputLabel value="Sexo"/>
+                <h:selectOneMenu id="sexo" value="#{CandidatoBean.cadidato.sexo}">  
+                    <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>  
+                    <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                </h:selectOneMenu> <br></br>
+                
+                
+                <h3>Objetivos profissionais   ----------------------------------------</h3>
+                <h:outputLabel value="Obejtivo Profissional"/>
+                <h:inputText value="#{CandidatoBean.cadidato.perfilprofissional}"/><br></br>
+                <h:outputLabel value="Pretensão Salarial"/>
+                <h:inputText value="#{CandidatoBean.cadidato.salario}"/><br></br>
+                <h:outputLabel value="Área de atuação"/>
+                <h:selectOneMenu id="areaatuacao" value="#{CandidatoBean.cadidato.areaatuacao}">  
+                    <f:selectItem itemValue=" ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" itemLabel="ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" />
+                    <f:selectItem itemValue=" AUDITORIA" itemLabel="AUDITORIA" />
+                    <f:selectItem itemValue=" CONTABILIDADE" itemLabel="CONTABILIDADE" />
+                    <f:selectItem itemValue=" ENERGIA" itemLabel="ENERGIA" />
+                    <f:selectItem itemValue=" FINAÇAS E RELAÇÕES COM INVESTIDORES" itemLabel="FINAÇAS E RELAÇÕES COM INVESTIDORES" />
+                    <f:selectItem itemValue=" GESTÃO DE PESSOAS E DESENVOLVIMENTO ORGANIZACIONAL" itemLabel="GESTÃO DE PESSOAS E DESENVOLVIMENTO ORGANIZACIONAL" />
+                    <f:selectItem itemValue=" INDUSTRIAL" itemLabel="INDUSTRIAL" />
+                    <f:selectItem itemValue=" JURÍDICO" itemLabel="JURÍDICO" />
+                    <f:selectItem itemValue=" LOGÍSTICA" itemLabel="LOGÍSTICA" />
+                    <f:selectItem itemValue=" MARKETING E VENDAS" itemLabel="MARKETING E VENDAS" />
+                    <f:selectItem itemValue=" METÁLICOS" itemLabel="METÁLICOS" />
+                    <f:selectItem itemValue=" PLANEJAMENTO E DESENVOLVIMENTO DE NEGÓCIOS" itemLabel="PLANEJAMENTO E DESENVOLVIMENTO DE NEGÓCIOS" />
+                    <f:selectItem itemValue=" PLANEJAMENTO OPERACIONAL (SOP)" itemLabel="PLANEJAMENTO OPERACIONAL (SOP)" />
+                    <f:selectItem itemValue=" RESPONSABILIDADE SOCIAL" itemLabel="RESPONSABILIDADE SOCIAL" />
+                    <f:selectItem itemValue=" SAUDE E SEGURANÇA DO TRABALHO" itemLabel="SAUDE E SEGURANÇA DO TRABALHO" />
+                    <f:selectItem itemValue=" SUPRIMENTOS" itemLabel="SUPRIMENTOS" />
+                    <f:selectItem itemValue=" TECNOLOGIA DE GESTÃO" itemLabel="TECNOLOGIA DE GESTÃO" />
+                    <f:selectItem itemValue=" TECNOLOGIA DE INFORMAÇÃO" itemLabel="TECNOLOGIA DE INFORMAÇÃO" />
+                 </h:selectOneMenu> <br></br>
+                 <h:outputLabel value="Objetivo Profissional"/><br></br>
+                 <h:inputTextarea value="#{CandidatoBean.cadidato.objetivoprofissional}"/><br></br>
+                <h3>Formação   ---------------------------------------------------------</h3>
+                <h:selectOneMenu id="grauensino" value="#{CandidatoBean.cadidato.grauensino}">  
+                <f:selectItem itemValue="Superior" itemLabel="Ensino Superior"/>  
+                    <f:selectItem itemValue="Medio" itemLabel="Ensino Médio"/>
+                    <f:selectItem itemValue="Fundamental" itemLabel="Ensino Fundamental"/>
+                </h:selectOneMenu> <br></br>
+
+                <h:selectOneMenu id="institutoensino" value="#{CandidatoBean.cadidato.institutoensino}">  
+                    <f:selectItem itemValue="Mackenzie" itemLabel="Mackenzie"/>  
+                    <f:selectItem itemValue="USP" itemLabel="USP"/>
+                    <f:selectItem itemValue="PUC" itemLabel="PUC"/>
+                </h:selectOneMenu><br></br>
+                <h:outputLabel value="Mês/Ano Conlusão"/>
+                <h:inputText value="#{CandidatoBean.cadidato.conclusao}"/><br></br>
+
+                <h:commandButton action="#{CandidatoBean.criaCandidato()}" value="Inserir" />
+            </h:form>
+        </f:view>
+    </h:body>
+
+</html>
+
