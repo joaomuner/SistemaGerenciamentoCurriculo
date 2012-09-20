@@ -1,2 +1,2 @@
 language: java
-script: "ant GerenciamentoCurriculo/nbproject/build-impl.xml"
+script: "ant -buildfile GerenciamentoCurriculo/nbproject/build-impl.xml"
