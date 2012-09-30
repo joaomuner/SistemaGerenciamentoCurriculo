@@ -36,11 +36,16 @@ public class CandidatoFacade extends AbstractFacade<Candidato> {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    public List<Temp> candidatoList() {
-        return (List<Temp>) em.createQuery("SELECT NEW entidade.Temp(c.areaatuacao, count(c.id)) FROM Candidato c GROUP BY c.areaatuacao").getResultList();
-    }
+    } 
+    
+    public Candidato findCandidatoLogado(Long id) {
+        try {
+            System.out.println("\n\n\n\n\nAQUIIII:" + id);
+            return (Candidato) em.createQuery("SELECT OBJECT(c) FROM Candidato c  WHERE  c.id=" + id ).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    } 
 
 
 }

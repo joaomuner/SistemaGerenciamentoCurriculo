@@ -4,14 +4,27 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
     </h:head>
     <h:body>
-        <h1>Registro Salvo com sucesso!</h1>
         <h:form>
-            <h:outputLabel value="#{ControleSessaoBean.getNomeUsuarioLogado()}"/>
-            <h:commandButton action="registreSe.xhtml" value="Registrar novo Candidato"/>
-            <br/>
-            <h:commandButton action="#{ControleSessaoBean.sair()}" value="SAIR"/>
+            <div class="principal">
+                <div class="menu">
+                    <h:link value="LOGIN" outcome="login" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoBean.carregarCurriculo()}" class="lnkMenu" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
+                <br/>
+                <div style="float: right"><h:outputLabel value="#{ControleSessaoBean.saudacaoLogado}" /></div>
+                <br/>
+                <h3>Registro Salvo com sucesso!</h3>
+                <h:outputLabel value="#{ControleSessaoBean.getNomeUsuarioLogado()}"/>
+                <h:commandButton action="registreSe.xhtml" value="Registrar novo Candidato"/>
+                <br/>
+                <h:commandButton action="#{ControleSessaoBean.sair()}" value="SAIR"/>
+            </div>
         </h:form>
     </h:body>
 </html>

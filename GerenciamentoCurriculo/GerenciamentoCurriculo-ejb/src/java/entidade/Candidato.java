@@ -43,6 +43,14 @@ public class Candidato implements Serializable {
     private String perfilprofissional;
     private String conclusao;
     
+    private String empresa;
+    private String areaatuacaoexperiencia;
+    private double salarioexperiencia;
+    private String datainicio;
+    private String datafinal;
+    private String descatividade;
+    private String beneficios;
+    
     public Long getId() {
         return id;
     }
@@ -203,7 +211,61 @@ public class Candidato implements Serializable {
         this.senha = senha;
     }
 
-    
+    public String getAreaatuacaoexperiencia() {
+        return areaatuacaoexperiencia;
+    }
+
+    public void setAreaatuacaoexperiencia(String areaatuacaoexperiencia) {
+        this.areaatuacaoexperiencia = areaatuacaoexperiencia;
+    }
+
+    public String getBeneficios() {
+        return beneficios;
+    }
+
+    public void setBeneficios(String beneficios) {
+        this.beneficios = beneficios;
+    }
+
+    public String getDatafinal() {
+        return datafinal;
+    }
+
+    public void setDatafinal(String datafinal) {
+        this.datafinal = datafinal;
+    }
+
+    public String getDatainicio() {
+        return datainicio;
+    }
+
+    public void setDatainicio(String datainicio) {
+        this.datainicio = datainicio;
+    }
+
+    public String getDescatividade() {
+        return descatividade;
+    }
+
+    public void setDescatividade(String descatividade) {
+        this.descatividade = descatividade;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
+    public double getSalarioexperiencia() {
+        return salarioexperiencia;
+    }
+
+    public void setSalarioexperiencia(double salarioexperiencia) {
+        this.salarioexperiencia = salarioexperiencia;
+    } 
     
     
     @Override

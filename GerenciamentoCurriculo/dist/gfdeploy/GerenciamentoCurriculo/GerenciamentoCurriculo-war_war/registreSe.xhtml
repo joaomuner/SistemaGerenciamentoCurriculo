@@ -6,13 +6,22 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
     </h:head>
     <h:body>
-        <h3>REGISTRE-SE</h3>
-        <f:view>
-            <h:form>
-                Usuário Logado: <h:outputLabel value="#{ControleSessaoBean.getNomeUsuarioLogado()}" />
+        <h:form>
+            <div class="principal">
+                <div class="menu">    
+                    <h:link value="LOGIN" outcome="login" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoBean.carregarCurriculo()}" class="lnkMenu" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
                 <br/>
+                <div style="float: right"><h:outputLabel value="#{ControleSessaoBean.saudacaoLogado}" /></div>
+                <br/>
+                <h3>REGISTRE-SE</h3>
                 <br/>
                 <table>
                     <tr>
@@ -87,7 +96,7 @@
                     </tr>
                     <tr>
                         <td>Área de Atuação:</td>
-                        <td>
+                        <td colspan="2">
                             <h:selectOneMenu id="areaatuacao" value="#{CandidatoBean.cadidato.areaatuacao}">  
                                 <f:selectItem itemValue=" ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" itemLabel="ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" />
                                 <f:selectItem itemValue=" AUDITORIA" itemLabel="AUDITORIA" />
@@ -114,6 +123,68 @@
                         <td valign="top">Objetivo Profissional:</td>
                         <td><h:inputTextarea value="#{CandidatoBean.cadidato.objetivoprofissional}"/></td>
                     </tr>
+
+
+
+                    <tr>
+                        <td colspan="2" >EXPERIÊNCIA ANTERIOR   -------------------------------------------- </td>
+                    </tr>
+                    <tr>
+                        <td>Empresa:</td>
+                        <td><h:inputText value="#{CandidatoBean.cadidato.empresa}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Área de Atuação (Experiência):</td>
+                        <td colspan="2">
+                            <h:selectOneMenu id="areaatuacaoexperiencia" value="#{CandidatoBean.cadidato.areaatuacaoexperiencia}">  
+                                <f:selectItem itemValue=" ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" itemLabel="ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" />
+                                <f:selectItem itemValue=" AUDITORIA" itemLabel="AUDITORIA" />
+                                <f:selectItem itemValue=" CONTABILIDADE" itemLabel="CONTABILIDADE" />
+                                <f:selectItem itemValue=" ENERGIA" itemLabel="ENERGIA" />
+                                <f:selectItem itemValue=" FINAÇAS E RELAÇÕES COM INVESTIDORES" itemLabel="FINAÇAS E RELAÇÕES COM INVESTIDORES" />
+                                <f:selectItem itemValue=" GESTÃO DE PESSOAS E DESENVOLVIMENTO ORGANIZACIONAL" itemLabel="GESTÃO DE PESSOAS E DESENVOLVIMENTO ORGANIZACIONAL" />
+                                <f:selectItem itemValue=" INDUSTRIAL" itemLabel="INDUSTRIAL" />
+                                <f:selectItem itemValue=" JURÍDICO" itemLabel="JURÍDICO" />
+                                <f:selectItem itemValue=" LOGÍSTICA" itemLabel="LOGÍSTICA" />
+                                <f:selectItem itemValue=" MARKETING E VENDAS" itemLabel="MARKETING E VENDAS" />
+                                <f:selectItem itemValue=" METÁLICOS" itemLabel="METÁLICOS" />
+                                <f:selectItem itemValue=" PLANEJAMENTO E DESENVOLVIMENTO DE NEGÓCIOS" itemLabel="PLANEJAMENTO E DESENVOLVIMENTO DE NEGÓCIOS" />
+                                <f:selectItem itemValue=" PLANEJAMENTO OPERACIONAL (SOP)" itemLabel="PLANEJAMENTO OPERACIONAL (SOP)" />
+                                <f:selectItem itemValue=" RESPONSABILIDADE SOCIAL" itemLabel="RESPONSABILIDADE SOCIAL" />
+                                <f:selectItem itemValue=" SAUDE E SEGURANÇA DO TRABALHO" itemLabel="SAUDE E SEGURANÇA DO TRABALHO" />
+                                <f:selectItem itemValue=" SUPRIMENTOS" itemLabel="SUPRIMENTOS" />
+                                <f:selectItem itemValue=" TECNOLOGIA DE GESTÃO" itemLabel="TECNOLOGIA DE GESTÃO" />
+                                <f:selectItem itemValue=" TECNOLOGIA DE INFORMAÇÃO" itemLabel="TECNOLOGIA DE INFORMAÇÃO" />
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Sálario:</td>
+                        <td><h:inputText value="#{CandidatoBean.cadidato.salarioexperiencia}"/></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Data de Início:</td>
+                        <td><h:inputText value="#{CandidatoBean.cadidato.datainicio}"/></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Data Final:</td>
+                        <td><h:inputText value="#{CandidatoBean.cadidato.datafinal}"/></td>
+
+                    </tr>
+                    <tr>
+                        <td valign="top">Descrição da Atividade</td>
+                        <td><h:inputTextarea value="#{CandidatoBean.cadidato.descatividade}"/></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Benefícios</td>
+                        <td><h:inputTextarea value="#{CandidatoBean.cadidato.beneficios}"/></td>
+                    </tr>
+
+
+
+
+
+
                     <tr>
                         <td colspan="2" >FORMAÇÃO   --------------------------------------------------------- </td>
                     </tr>
@@ -147,8 +218,8 @@
                         </td>
                     </tr>
                 </table>
-            </h:form>
-        </f:view>
+            </div>
+        </h:form>
     </h:body>
 
 </html>

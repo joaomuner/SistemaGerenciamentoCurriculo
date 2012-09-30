@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="principal">
+                <div class="menu">
+                    <h:link value="LOGIN" outcome="login" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoBean.carregarCurriculo()}" class="lnkMenu" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
+                <br/>
+                <div style="float: right"><h:outputLabel value="#{ControleSessaoBean.saudacaoLogado}" /></div>
+                <br/>
+                <h3>VISUALIZAR CURRICULO</h3>
+
+                <f:view>
+
+                    <table>
+                        <tr>
+                            <td colspan="2">DADOS PESSOAIS   --------------------------------------------------</td>
+                        </tr> 
+                        <tr>
+                            <td>Nome: </td>
+                            <td><h:outputLabel value="#{ControleSessaoBean.getNomeUsuarioLogado()}" /></td>
+                        </tr>                       
+
+                        <tr>
+                            <td>Email:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.email}" /></td>
+                        </tr>
+                        <tr>
+                            <td>CPF:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.CPF}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Telefone:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.telefone}" /></td>
+                        </tr>
+                        <tr>
+                            <td>RG:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.RG}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Data de Nascimento:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.datanascimento}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Endereço:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.endereco}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Bairro:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.bairro}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cidade:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.cidade}" /></td>
+                        </tr>
+                        <tr>
+                            <td>CEP:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.CEP}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Sexo:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.sexo}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">OBJETIVOS PROFISSIONAIS   ----------------------------------------</td>
+                        </tr>
+                        <tr>
+                            <td>Perfil Profissional:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.perfilprofissional}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Pretensão Salarial:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.salario}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Área de Atuação:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.areaatuacao}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Objetivo Profissional:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.objetivoprofissional}" /></td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                            <td colspan="2" >EXPERIÊNCIA ANTERIOR   -------------------------------------------- </td>
+                        </tr>
+                        
+                        <tr>
+                            <td valign="top">Empresa:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.empresa}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Area de Atuação (Experiência):</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.areaatuacaoexperiencia}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Salário:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.salarioexperiencia}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Data de Início:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.datainicio}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Data Final:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.datafinal}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Descrição da Atividade:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.descatividade}" /></td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Benefícios:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.beneficios}" /></td>
+                        </tr>
+                        
+                        
+                        
+                        
+                        <tr>
+                            <td colspan="2" >FORMAÇÃO   ------------------------------------------------------------ </td>
+                        </tr>
+                        <tr>
+                            <td>Grau de Escolariedade:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.grauensino}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Instituto de Ensino:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.institutoensino}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Mês/Ano de Conclusão:</td>
+                            <td><h:outputLabel value="#{CandidatoBean.cadidato.conclusao}" /></td>
+                        </tr>                  
+                    </table>  
+
+                </f:view>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

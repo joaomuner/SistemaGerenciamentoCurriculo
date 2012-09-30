@@ -18,24 +18,34 @@
                     <h:link value="HOME" outcome="index" class="lnkMenu" />
                 </div>
                 <br/>
-                <div style="float: right" ><h:outputLabel value="#{ControleSessaoBean.saudacaoLogado}" />
-                </div>
+                <div style="float: right"><h:outputLabel value="#{ControleSessaoBean.saudacaoLogado}" /></div>
                 <br/>
-                <h:dataTable value="#{VagaBean.vagaFacade.areaAtuacaoList()}"  var="areaAtuacao" style="width:100%;" >
+                <h3>Busca de Vagas</h3>
+                <h:dataTable value="#{VagaBean.buscarVagas()}"  var="vaga" style="width:100%;"   >
                     <h:column>  
                         <f:facet name="header">  
-                            <h:outputText value="Área de Atuação"/>  
+                            <h:outputText value="COD"/>  
                         </f:facet>  
-                        <h:outputText value="#{areaAtuacao.descricao}"/>  
+                        <h:outputText value="#{vaga.id}"/>  
                     </h:column>  
                     <h:column>  
                         <f:facet name="header">  
-                            <h:outputText value="QTD"/>  
+                            <h:outputText value="TÍTULO"/>  
                         </f:facet>  
-                        <h:outputText value="#{areaAtuacao.valor}"/>  
+
+                        <h:outputText value="#{vaga.titulo}" />  
                     </h:column>  
+                    <h:column>
+                        <f:facet name="header">  
+                            <h:outputText value="DETALHE"/>  
+                        </f:facet>  
+                        <h:commandLink action="#{VagaBean.carregarDetalheVaga()}"  value="detalhe"  immediate="true">  
+                            <f:param name="idRow" value="#{vaga.id}" />  
+                        </h:commandLink>  
+                    </h:column>
                 </h:dataTable>  
             </div>
         </h:form>
     </h:body>
 </html>
+

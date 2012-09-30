@@ -31,10 +31,11 @@ public class ControleSessaoBean {
         Candidato c = this.candidatoFacade.findCandidatoEmail(email, senha);
         if (c != null) {
             session.setAttribute("nome", c.getNome());
+            session.setAttribute("idCandidato", c.getId());
         } else {
             session.setAttribute("nome", "NÃO HÁ USUÁRIO");
         }
-        return "registreSe";
+        return "index";
     }
 
     public String sair() {
@@ -57,6 +58,27 @@ public class ControleSessaoBean {
             return (String) session.getAttribute("nome");
         }
         return "";
+    }
+
+    public String getSaudacaoLogado() {
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+        //Se não houver sessao retorna EMPTY!
+        if (session != null) {
+            return (String) session.getAttribute("nome");
+        }
+        return "";
+    }
+
+    public Long getIdUsuarioLogado() {
+
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+        if (session != null) {
+            return (Long) session.getAttribute("idCandidato");
+        } else {
+            return null;
+        }
     }
 
     public void setEmail(String email) {
