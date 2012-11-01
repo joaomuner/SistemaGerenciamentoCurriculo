@@ -1,0 +1,45 @@
+/* 
+    Document   : estilo
+    Created on : 23/09/2012, 22:50:44
+    Author     : tuca
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body
+{
+    font-family: Verdana;
+}
+.principal{
+    width:800px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.lnkMenu
+{
+    display: block;
+    float: right;
+    border: 1px solid lightgrey;
+    padding: 5px 5px 5px 5px;
+    margin: 2px 2px 2px 2px;
+    text-decoration: none;
+}
+table th{
+    background-color: lightblue;
+}
+
+.menu{
+    float:both;
+    padding-bottom: 50px;
+}
+
+.lnkSair
+{
+    font-size: 0.6em;
+}
+
+.saudacao
+{
+    float: right;
+    text-align: right;
+}
