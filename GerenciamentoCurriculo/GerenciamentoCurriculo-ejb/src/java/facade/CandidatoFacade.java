@@ -4,8 +4,7 @@
  */
 package facade;
 
-import entidade.Candidato;
-import entidade.Temp;
+import entidade.*;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -38,9 +37,47 @@ public class CandidatoFacade extends AbstractFacade<Candidato> {
         }
     }
 
-    public List<Temp> candidatoList() {
-        return (List<Temp>) em.createQuery("SELECT NEW entidade.Temp(c.areaatuacao, count(c.id)) FROM Candidato c GROUP BY c.areaatuacao").getResultList();
+    public Candidato findCandidatoEmail(String email) {
+        try {
+            return (Candidato) em.createQuery("SELECT OBJECT(c) FROM Candidato c  WHERE  c.email='" + email + "'").getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+    public Candidato findCandidatoLogado(Long id) {
+        try {
+            return (Candidato) em.createQuery("SELECT OBJECT(c) FROM Candidato c  WHERE  c.id=" + id).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
+    public Empresa findEmpresa(Long id) {
+        try {
+            return (Empresa) em.createQuery("SELECT OBJECT(e) FROM Empresa e  WHERE  e.id=" + id).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public AreaAtuacao findAreaAtuacao(Long id) {
+        try {
+            return (AreaAtuacao) em.createQuery("SELECT OBJECT(a) FROM AreaAtuacao a  WHERE  a.id=" + id).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Universidade findUniversidade(Long id) {
+        try {
+            return (Universidade) em.createQuery("SELECT OBJECT(u) FROM Universidade u  WHERE  u.id=" + id).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Temp> listExperiencia(long idCandidato) {
+        return (List<Temp>) em.createQuery("SELECT NEW entidade.Temp(em.nome, e.descricaoAtv, e.flagAprovado) FROM ExperienciaAnterior e, Empresa em WHERE e.idEmpresa = em.id AND e.idCandidato=" + idCandidato).getResultList();
+    }
 }

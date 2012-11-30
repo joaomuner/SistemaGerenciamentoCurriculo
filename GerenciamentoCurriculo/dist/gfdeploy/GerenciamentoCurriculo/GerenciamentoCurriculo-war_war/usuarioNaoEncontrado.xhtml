@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
+    </h:head>
+    <h:body>
+        <h:form>
+              <div class="principal">
+                <div class="menu">
+                    <h:commandLink value="LOGIN" action="#{ControleSessaoMBean.login()}" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoMBean.carregarCurriculo()}" class="lnkMenu" rendered="#{ControleSessaoMBean.usuarioLogado}" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
+                <br/>
+                <h:panelGroup rendered="#{ControleSessaoMBean.usuarioLogado}">
+                    <div class="saudacao" >
+                        Bem vindo(a),  <h:outputLabel value="#{ControleSessaoMBean.nomeUsuarioLogado}" /> <br/>
+                        <h:commandLink action="#{ControleSessaoMBean.sair()}" value="[SAIR]" class="lnkSair"/>
+                    </div>
+                </h:panelGroup>
+                <br/>
+                <h3>
+                    Ops!
+                </h3>
+                <br/>
+                Usuário não encontrado! Email ou senha incorreto! :/
+                <br/><br/>
+                <h:link outcome="login" value="VOLTAR"/> 
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

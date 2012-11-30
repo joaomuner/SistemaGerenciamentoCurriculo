@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="principal">
+                <div class="menu">
+                    <h:commandLink value="LOGIN" action="#{ControleSessaoMBean.login()}" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoMBean.carregarCurriculo()}" class="lnkMenu" rendered="#{ControleSessaoMBean.usuarioLogado}" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
+                <br/>
+                <h:panelGroup rendered="#{ControleSessaoMBean.usuarioLogado}">
+                    <div class="saudacao" >
+                        Bem vindo(a),  <h:outputLabel value="#{ControleSessaoMBean.nomeUsuarioLogado}" /> <br/>
+                        <h:commandLink action="#{ControleSessaoMBean.sair()}" value="[SAIR]" class="lnkSair"/>
+                    </div>
+                </h:panelGroup>
+                <br/>
+                <h3>VISUALIZAR CURRICULO</h3>
+
+                <f:view>
+
+                    <table>
+                        <tr>
+                            <td colspan="2">DADOS PESSOAIS   --------------------------------------------------</td>
+                        </tr> 
+                        <tr>
+                            <td>Nome: </td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.nome}" disabled="true" /></td>
+                        </tr>                       
+
+                        <tr>
+                            <td>Email:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.email}" disabled="true" /></td>
+                        </tr>
+                        <tr>
+                            <td>CPF:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.CPF}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Telefone:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.telefone}" /></td>
+                        </tr>
+                        <tr>
+                            <td>RG:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.RG}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Data de Nascimento:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.datanascimento}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Endereço:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.endereco}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Bairro:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.bairro}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cidade:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.cidade}" /></td>
+                        </tr>
+                        <tr>
+                            <td>CEP:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.CEP}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Sexo:</td>
+                            <td>
+                                <h:selectOneMenu id="sexo" value="#{CandidatoMBean.candidato.sexo}">  
+                                    <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>  
+                                    <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">OBJETIVOS PROFISSIONAIS   ----------------------------------------</td>
+                        </tr>
+                        <tr>
+                            <td>Perfil Profissional:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.perfilprofissional}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Pretensão Salarial:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.salario}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Área de atuação desejada:</td>
+                            <!--<td><h:outputLabel value="#{CandidatoMBean.areaAtuacao.descricao}" /></td>-->
+                            <td>
+                                <h:selectOneMenu value="#{CandidatoMBean.candidato.areaatuacao}" >
+                                    <f:selectItems value="#{AreaAtuacaoMBean.areasAtuacao}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Objetivo Profissional:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.objetivoprofissional}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" >FORMAÇÃO   ------------------------------------------------------------ </td>
+                        </tr>
+                        <tr>
+                            <td>Grau de Escolaridade:</td>
+                            <td>
+                                <h:selectOneMenu id="grauensino" value="#{CandidatoMBean.candidato.grauensino}">  
+                                    <f:selectItem itemValue="Superior" itemLabel="ENSINO SUPERIOR"/>  
+                                    <f:selectItem itemValue="Medio" itemLabel="ENSINO MÉDIO"/>
+                                    <f:selectItem itemValue="Fundamental" itemLabel="ENSINO FUNDAMENTAL"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Instituto de Ensino:</td>
+                            <td>
+                                <h:selectOneMenu value="#{CandidatoMBean.candidato.institutoensino}" >
+                                    <f:selectItems value="#{UniversidadeMBean.universidades}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mês/Ano de Conclusão:</td>
+                            <td><h:inputText value="#{CandidatoMBean.candidato.conclusao}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" >EXPERIÊNCIA ANTERIOR   -------------------------------------------- </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="right">
+                                <h:commandLink action="#{CandidatoMBean.novaExperiencia()}" value="Adicionar Experiência" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:dataTable value="#{CandidatoMBean.listarExperiencias()}"  var="experiencia" style="width:100%;" >
+                                    <h:column>  
+                                        <f:facet name="header">  
+                                            <h:outputText value="EMPRESA"/>  
+                                        </f:facet>  
+                                        <h:outputText value="#{experiencia.empresa}"/>  
+                                    </h:column>  
+                                    <h:column>  
+                                        <f:facet name="header">  
+                                            <h:outputText value="ATIVIDADE"/>  
+                                        </f:facet>  
+                                        <h:outputText value="#{experiencia.descAtividade}"/>  
+                                    </h:column>
+                                    <h:column>  
+                                        <f:facet name="header">  
+                                            <h:outputText value="APROVADO"/>  
+                                        </f:facet>  
+                                        <h:outputText value="#{experiencia.aprovado}"/>  
+                                    </h:column>  
+                                </h:dataTable> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="right">
+                                <h:commandButton action="#{CandidatoMBean.editarCandidato()}" value="Salvar Alterações" />
+                            </td>
+                        </tr>
+
+                    </table>  
+
+                </f:view>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

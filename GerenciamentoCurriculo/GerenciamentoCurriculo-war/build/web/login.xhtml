@@ -4,32 +4,49 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
     </h:head>
     <h:body>
         <h:form>
-            <h3>LOGIN</h3>
-            <table>
-                <tr>
-                    <td>
-                        Email:
-                    </td>
-                    <td>
-                        <h:inputText value="#{ControleSessaoBean.email}"/>       
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Senha:
-                    </td>  
-                    <td>
-                        <h:inputSecret value="#{ControleSessaoBean.senha}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="right"><h:commandButton action="#{ControleSessaoBean.validarUsuario()}" value="Entrar"/></td>
-                </tr>
-            </table>            
+            <div class="principal">
+                <div class="menu">
+                    <h:commandLink value="LOGIN" action="#{ControleSessaoMBean.login()}" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoMBean.carregarCurriculo()}" class="lnkMenu" rendered="#{ControleSessaoMBean.usuarioLogado}" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
+                <br/>
+                <h:panelGroup rendered="#{ControleSessaoMBean.usuarioLogado}">
+                    <div class="saudacao" >
+                        Bem vindo(a),  <h:outputLabel value="#{ControleSessaoMBean.nomeUsuarioLogado}" /> <br/>
+                        <h:commandLink action="#{ControleSessaoMBean.sair()}" value="[SAIR]" class="lnkSair"/>
+                    </div>
+                </h:panelGroup>
+                <br/>
+                <h3>LOGIN</h3>
+                <table>
+                    <tr>
+                        <td>
+                            Email:
+                        </td>
+                        <td>
+                            <h:inputText value="#{ControleSessaoMBean.email}"/>       
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Senha:
+                        </td>  
+                        <td>
+                            <h:inputSecret value="#{ControleSessaoMBean.senha}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right"><h:commandButton action="#{ControleSessaoMBean.validarUsuario()}" value="Entrar"/></td>
+                    </tr>
+                </table>            
+            </div>
         </h:form>
     </h:body>
 </html>
-

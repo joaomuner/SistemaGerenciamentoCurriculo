@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bean;
+package mBean;
 
 import entidade.Candidato;
 import facade.CandidatoFacade;
@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jota
  */
-@ManagedBean(name = "ControleSessaoBean")
+@ManagedBean(name = "ControleSessaoMBean")
 @RequestScoped
-public class ControleSessaoBean {
+public class ControleSessaoMBean {
 
     @EJB
     private CandidatoFacade candidatoFacade;
@@ -31,10 +31,11 @@ public class ControleSessaoBean {
         Candidato c = this.candidatoFacade.findCandidatoEmail(email, senha);
         if (c != null) {
             session.setAttribute("nome", c.getNome());
-        } else {
-            session.setAttribute("nome", "NÃO HÁ USUÁRIO");
+            session.setAttribute("idCandidato", c.getId());
+            return "index";
         }
-        return "registreSe";
+
+        return "usuarioNaoEncontrado";
     }
 
     public String sair() {
@@ -48,7 +49,6 @@ public class ControleSessaoBean {
         return "login";
     }
 
-    //metodo que utiliza uma sessao já existente e retorna o nome
     public String getNomeUsuarioLogado() {
         FacesContext fCtx = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
@@ -57,6 +57,34 @@ public class ControleSessaoBean {
             return (String) session.getAttribute("nome");
         }
         return "";
+    }
+
+    public Long getIdUsuarioLogado() {
+
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+        if (session != null) {
+            return (Long) session.getAttribute("idCandidato");
+        } else {
+            return null;
+        }
+
+    }
+
+    public boolean getUsuarioLogado() {
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+        if (session != null && getIdUsuarioLogado() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public String login() {
+        if (getUsuarioLogado()) {
+            return "usuarioLogado";
+        }
+        return "login";
     }
 
     public void setEmail(String email) {

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="principal">
+                <div class="menu">
+                    <h:commandLink value="LOGIN" action="#{ControleSessaoMBean.login()}" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoMBean.carregarCurriculo()}" class="lnkMenu" rendered="#{ControleSessaoMBean.usuarioLogado}" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
+                <br/>
+                <h:panelGroup rendered="#{ControleSessaoMBean.usuarioLogado}">
+                    <div class="saudacao" >
+                        Bem vindo(a),  <h:outputLabel value="#{ControleSessaoMBean.nomeUsuarioLogado}" /> <br/>
+                        <h:commandLink action="#{ControleSessaoMBean.sair()}" value="[SAIR]" class="lnkSair"/>
+                    </div>
+                </h:panelGroup>
+                <br/>
+                <h3>DETALHE VAGA</h3>
+                <f:view>
+                    <table>
+                        <tr>
+                            <td colspan="2">DADOS DA VAGA  --------------------------------------------------</td>
+                        </tr> 
+                        <tr>
+                            <td>Empresa </td>
+                            <td><h:outputLabel value="#{VagaMBean.empresa.nome}" /></td>
+                        </tr>                       
+
+                        <tr>
+                            <td>Localização: </td>
+                            <td><h:outputLabel value="#{VagaMBean.vaga.localizacao}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Descrição:</td>
+                            <td><h:outputLabel value="#{VagaMBean.vaga.descricao}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Area Atuação:</td>
+                            <td><h:outputLabel value="#{VagaMBean.areaAtuacao.descricao}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Título:</td>
+                            <td><h:outputLabel value="#{VagaMBean.vaga.titulo}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Requisitos:</td>
+                            <td><h:outputLabel value="#{VagaMBean.vaga.requisitos}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Salário:</td>
+                            <td><h:outputLabel value="#{VagaMBean.vaga.salario}" /></td>
+                        </tr>
+                    </table>  
+                    <br/>
+                    <h:panelGroup rendered="#{ControleSessaoMBean.usuarioLogado}">
+                        <h:commandButton value="CANDIDATAR-SE A VAGA!" action="#{CandidatoVagaMBean.insereCandidatoVaga()}" immediate="true"  >
+                            <f:param name="idCandidato" value="#{ControleSessaoMBean.idUsuarioLogado}" />  
+                            <f:param name="idVaga" value="#{VagaMBean.vaga.id}" />  
+                        </h:commandButton>
+                        <br/><br/>
+                    </h:panelGroup>
+                    <h:link value="VOLTAR"  outcome="buscaVagas" />
+                </f:view>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

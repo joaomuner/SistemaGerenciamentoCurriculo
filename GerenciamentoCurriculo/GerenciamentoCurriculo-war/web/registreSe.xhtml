@@ -6,13 +6,27 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>.:Vagas Aqui:.</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />  
     </h:head>
     <h:body>
-        <h3>REGISTRE-SE</h3>
-        <f:view>
-            <h:form>
-                Usuário Logado: <h:outputLabel value="#{ControleSessaoBean.getNomeUsuarioLogado()}" />
+        <h:form>
+            <div class="principal">
+                <div class="menu">
+                    <h:commandLink value="LOGIN" action="#{ControleSessaoMBean.login()}" class="lnkMenu" />
+                    <h:link value="REGISTRE-SE" outcome="registreSe" class="lnkMenu" />
+                    <h:link value="BUSCA DE VAGAS"  outcome="buscaVagas" class="lnkMenu" />
+                    <h:commandLink  value="VISUALIZAR CURRÍCULO" action="#{CandidatoMBean.carregarCurriculo()}" class="lnkMenu" rendered="#{ControleSessaoMBean.usuarioLogado}" />
+                    <h:link value="HOME" outcome="index" class="lnkMenu" />
+                </div>
                 <br/>
+                <h:panelGroup rendered="#{ControleSessaoMBean.usuarioLogado}">
+                    <div class="saudacao" >
+                        Bem vindo(a),  <h:outputLabel value="#{ControleSessaoMBean.nomeUsuarioLogado}" /> <br/>
+                        <h:commandLink action="#{ControleSessaoMBean.sair()}" value="[SAIR]" class="lnkSair"/>
+                    </div>
+                </h:panelGroup>
+                <br/>
+                <h3>REGISTRE-SE</h3>
                 <br/>
                 <table>
                     <tr>
@@ -20,135 +34,68 @@
                     </tr> 
                     <tr>
                         <td>Email:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.email}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.email}"/></td>
                     </tr>
                     <tr>
                         <td>Senha:</td>
-                        <td><h:inputSecret value="#{CandidatoBean.cadidato.senha}"/></td>
+                        <td><h:inputSecret value="#{CandidatoMBean.candidato.senha}"/></td>
                     </tr>
                     <tr>
                         <td colspan="2">DADOS PESSOAIS   ----------------------------------------------------</td>
                     </tr>
                     <tr>
                         <td>Nome:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.nome}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.nome}"/></td>
                     </tr>
                     <tr>
                         <td>CPF:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.CPF}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.CPF}"/></td>
                     </tr>
                     <tr>
                         <td>Telefone:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.telefone}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.telefone}"/></td>
                     </tr>
                     <tr>
                         <td>RG:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.RG}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.RG}"/></td>
                     </tr>
                     <tr>
                         <td>Data de Nascimento:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.datanascimento}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.datanascimento}"/></td>
                     </tr>
                     <tr>
                         <td>Endereço:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.endereco}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.endereco}"/></td>
                     </tr>
                     <tr>
                         <td>Bairro:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.bairro}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.bairro}"/></td>
                     </tr>
                     <tr>
                         <td>Cidade:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.cidade}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.cidade}"/></td>
                     </tr>
                     <tr>
                         <td>CEP:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.CEP}"/></td>
+                        <td><h:inputText value="#{CandidatoMBean.candidato.CEP}"/></td>
                     </tr>
                     <tr>
                         <td>Sexo:</td>
                         <td>
-                            <h:selectOneMenu id="sexo" value="#{CandidatoBean.cadidato.sexo}">  
+                            <h:selectOneMenu id="sexo" value="#{CandidatoMBean.candidato.sexo}">  
                                 <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>  
                                 <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
                             </h:selectOneMenu>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">OBJETIVOS PROFISSIONAIS   ----------------------------------------</td>
-                    </tr>
-                    <tr>
-                        <td>Perfil Profissional:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.perfilprofissional}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Pretensão Salarial:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.salario}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Área de Atuação:</td>
-                        <td>
-                            <h:selectOneMenu id="areaatuacao" value="#{CandidatoBean.cadidato.areaatuacao}">  
-                                <f:selectItem itemValue=" ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" itemLabel="ASSUNTOS INSTITUCIONAIS E COMUNICAÇÃO CORPORATIVA" />
-                                <f:selectItem itemValue=" AUDITORIA" itemLabel="AUDITORIA" />
-                                <f:selectItem itemValue=" CONTABILIDADE" itemLabel="CONTABILIDADE" />
-                                <f:selectItem itemValue=" ENERGIA" itemLabel="ENERGIA" />
-                                <f:selectItem itemValue=" FINAÇAS E RELAÇÕES COM INVESTIDORES" itemLabel="FINAÇAS E RELAÇÕES COM INVESTIDORES" />
-                                <f:selectItem itemValue=" GESTÃO DE PESSOAS E DESENVOLVIMENTO ORGANIZACIONAL" itemLabel="GESTÃO DE PESSOAS E DESENVOLVIMENTO ORGANIZACIONAL" />
-                                <f:selectItem itemValue=" INDUSTRIAL" itemLabel="INDUSTRIAL" />
-                                <f:selectItem itemValue=" JURÍDICO" itemLabel="JURÍDICO" />
-                                <f:selectItem itemValue=" LOGÍSTICA" itemLabel="LOGÍSTICA" />
-                                <f:selectItem itemValue=" MARKETING E VENDAS" itemLabel="MARKETING E VENDAS" />
-                                <f:selectItem itemValue=" METÁLICOS" itemLabel="METÁLICOS" />
-                                <f:selectItem itemValue=" PLANEJAMENTO E DESENVOLVIMENTO DE NEGÓCIOS" itemLabel="PLANEJAMENTO E DESENVOLVIMENTO DE NEGÓCIOS" />
-                                <f:selectItem itemValue=" PLANEJAMENTO OPERACIONAL (SOP)" itemLabel="PLANEJAMENTO OPERACIONAL (SOP)" />
-                                <f:selectItem itemValue=" RESPONSABILIDADE SOCIAL" itemLabel="RESPONSABILIDADE SOCIAL" />
-                                <f:selectItem itemValue=" SAUDE E SEGURANÇA DO TRABALHO" itemLabel="SAUDE E SEGURANÇA DO TRABALHO" />
-                                <f:selectItem itemValue=" SUPRIMENTOS" itemLabel="SUPRIMENTOS" />
-                                <f:selectItem itemValue=" TECNOLOGIA DE GESTÃO" itemLabel="TECNOLOGIA DE GESTÃO" />
-                                <f:selectItem itemValue=" TECNOLOGIA DE INFORMAÇÃO" itemLabel="TECNOLOGIA DE INFORMAÇÃO" />
-                            </h:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="top">Objetivo Profissional:</td>
-                        <td><h:inputTextarea value="#{CandidatoBean.cadidato.objetivoprofissional}"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" >FORMAÇÃO   --------------------------------------------------------- </td>
-                    </tr>
-                    <tr>
-                        <td>Grau de Escolariedade:</td>
-                        <td>
-                            <h:selectOneMenu id="grauensino" value="#{CandidatoBean.cadidato.grauensino}">  
-                                <f:selectItem itemValue="Superior" itemLabel="ENSINO SUPERIOR"/>  
-                                <f:selectItem itemValue="Medio" itemLabel="ENSINO MÉDIO"/>
-                                <f:selectItem itemValue="Fundamental" itemLabel="ENSINO FUNDAMENTAL"/>
-                            </h:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Instituo de Ensino:</td>
-                        <td>
-                            <h:selectOneMenu id="institutoensino" value="#{CandidatoBean.cadidato.institutoensino}">  
-                                <f:selectItem itemValue="Mackenzie" itemLabel="MACKENZIE"/>  
-                                <f:selectItem itemValue="USP" itemLabel="USP"/>
-                                <f:selectItem itemValue="PUC" itemLabel="PUC"/>
-                            </h:selectOneMenu>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mês/Ano de Conclusão:</td>
-                        <td><h:inputText value="#{CandidatoBean.cadidato.conclusao}"/></td>
-                    </tr>
-                    <tr>
                         <td colspan="2" align="right">
-                            <h:commandButton action="#{CandidatoBean.criaCandidato()}" value="Registrar-se" />
+                            <h:commandButton action="#{CandidatoMBean.criaCandidato()}" value="Registrar-se" />
                         </td>
                     </tr>
                 </table>
-            </h:form>
-        </f:view>
+            </div>
+        </h:form>
     </h:body>
 
 </html>
